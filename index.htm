@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>個人網站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #333;
+        }
+        .header p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .sections-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            font-size: 1.5em;
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+        }
+        .section ul li strong {
+            color: #333;
+        }
+        .skills ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skills ul li {
+            background: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .section h2 {
+                font-size: 1.2em;
+            }
+            .sections-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>莊曜旭</h1>
+            <p>電子郵件: yaoxuzhunag@gmail.com</p>
+        </div>
+        <div class="sections-wrapper">
+            <div class="section">
+                <h2>課程檔案</h2>
+                <ul>
+                    <li><a href="電腦教室上課規範.pptx">電腦教室上課規範</a></li>
+                    <li><a href="教育雲使用介紹.pptx">教育雲使用介紹</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>打字練習</h2>
+                <ul>
+                    <li><a href="https://sites.google.com/hyps.tp.edu.tw/type/%E9%A6%96%E9%A0%81">校園打字練習軟體</a></li>
+                    <li><a href="https://typing.tw/">線上中打</a></li>
+                    <li><a href="https://contest.hlc.edu.tw/typing/index.asp">花蓮縣打字練習網</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>bDesigner學習</h2>
+                <ul>
+                    <li><a href="https://bdesigner.star-kids.info/blockly/demos/code/index.html">bDesigner Blockly練習</a></li>
+                    <li><a href="https://bdesigner.star-kids.info/blockly1/index.html">bDesigner Scratch練習</a></li>
+                    <li><a href="https://aistudio.google.com/prompts/new_chat?_gl=1*ooh3xs*_up*MQ..&gclid=Cj0KCQjwo63HBhCKARIsAHOHV_W_pTIiP1jOyC-EVmsjuDlGNkBa0KVi2ri4juI1V-gG8YzKjqqZCZcaAu1gEALw_wcB&gclsrc=aw.ds">Google AI Studio</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Python學習</h2>
+                <ul>
+                    <li><a href="https://steam.oxxostudio.tw/category/python/info/start.html">STEAM教育學習網</a></li>
+                    <li><a href="https://ithelp.ithome.com.tw/users/20069378/ironman/1113">iT邦幫忙</a></li>
+                    <li><a href="https://www.hlbh.hlc.edu.tw/ischool/publish_page/146/?cid=10758">阿帥的教學網</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Python線上編譯</h2>
+                <ul>
+                    <li><a href="https://www.programiz.com/python-programming/online-compiler">Programiz</a></li>
+                    <li><a href="https://www.onlinegdb.com/online_python_compiler">onlineGDB</a></li>
+                    <li><a href="https://colab.research.google.com/?hl=zh-tw#">Google Colab</a></li>
+                    <li><a href="https://ideone.com">ideone</a></li>                    
+                </ul>
+            </div>            
+        </div>
+    </div>
+</body>
+</html>
