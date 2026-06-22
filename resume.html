@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人簡介</title>
+    <style>
+        /* 全域樣式設定 - 教職行政風格 */
+        :root {
+            --primary-color: #1e3d59; /* 典雅深藍：展現沉穩與信任感 */
+            --accent-color: #17b978;  /* 石墨綠/翡翠綠：象徵教育成長與創新 */
+            --bg-light: #f5f7fa;      /* 內斂淺灰背景 */
+            --text-dark: #2d3748;     /* 深色內文字 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', 'Segoe UI', "Microsoft JhengHei", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.65;
+            background-color: #ffffff;
+        }
+
+        /* 導覽列 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.96);
+            border-bottom: 2px solid var(--bg-light);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 18px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 區塊通用樣式 */
+        section {
+            padding: 120px 20px 90px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 12px auto 0 auto;
+        }
+
+        /* === 修改：首頁區塊 RWD 左右雙欄佈局 === */
+        #home {
+            background: linear-gradient(135deg, #e8eff9 0%, #ffffff 100%);
+        }
+
+        .home-container {
+            display: grid;
+            grid-template-columns: 220px 1fr; /* 左邊放相片，右邊放文字 */
+            gap: 45px;                       /* 左右欄位間距 */
+            width: 100%;
+            max-width: 900px;                /* 控制主視覺區域寬度 */
+            margin: 0 auto;
+            align-items: center;             /* 垂直置中對齊 */
+            text-align: left;                /* 電腦版文字靠左對齊，顯得更具行政專業感 */
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 220px;                    /* 微調相片大小以配合排版 */
+            height: 220px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(30, 61, 89, 0.15);
+        }
+
+        #home h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.35rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: #4a5568;
+            max-width: 100%;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        /* === 學經歷左右雙欄佈局 === */
+        #experience {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .edu-exp-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .column-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 8px;
+        }
+
+        .timeline {
+            width: 100%;
+            position: relative;
+            padding-left: 25px;
+            border-left: 3px solid #e2e8f0;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 6px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 3px solid #fff;
+            transition: background-color 0.3s;
+        }
+
+        .timeline-item:hover::before {
+            background-color: var(--accent-color);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        /* 行政專案與實績區塊 */
+        #portfolio {
+            background-color: var(--bg-light);
+            width: 100%;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            padding: 0 20px;
+        }
+
+        .portfolio-item {
+            background-color: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+            border-top-color: var(--accent-color);
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        .portfolio-info p {
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #edf2f7;
+            color: #4a5568;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* 響應式微調 */
+        @media (max-width: 768px) {
+            /* 平板與手機版時，首頁與學經歷皆自動恢復為上下排列，並將文字置中 */
+            .home-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .edu-exp-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #home h1 { font-size: 2.1rem; }
+            .subtitle { font-size: 1.15rem; }
+            .section-title { font-size: 1.75rem; }
+            nav a { margin: 0 10px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">基本簡介</a>
+        <a href="#experience">學經歷與服務</a>
+        <a href="#portfolio">行政實績與專案</a>
+    </nav>
+
+    <section id="home">
+        <div class="home-container">
+            
+            <div class="profile-container">
+                <img src="pic.jpg" alt="大頭照" class="profile-img">
+            </div>
+            
+            <div>
+                <h1>莊曜旭</h1>
+                <div class="subtitle">嘉義縣立朴子國民中學 / 資訊組長</div>
+                <p class="description">
+                    深耕教育領域多年，專長於行政業務規劃、校園資訊化推動與跨單位溝通協調。秉持「以行政支援教學，以資訊賦能校園」的理念，致力於優化校務行政流程，並透過數位工具建立高效、透明的校園管理機制。
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">學經歷與服務</h2>
+        
+        <div class="edu-exp-container">
+            
+            <div>
+                <div class="column-title">服務經歷</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025 年 - 至今</div>
+                        <div class="timeline-title">朴子國民中學 / 資訊組長</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2016 年 - 2025 年</div>
+                        <div class="timeline-title">朴子國民中學 / 教務主任</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2012 年 - 2016 年</div>
+                        <div class="timeline-title">朴子國民中學 / 設備組長</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2010 年 - 2012 年</div>
+                        <div class="timeline-title">朴子國民中學 / 導師</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2009 年 - 2010 年</div>
+                        <div class="timeline-title">布袋國民中學 / 總務主任</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2008 年 - 2009 年</div>
+                        <div class="timeline-title">布袋國民中學 / 學務主任</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2005 年 - 2008 年</div>
+                        <div class="timeline-title">布袋國民中學 / 導師</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2003 年 - 2005 年</div>
+                        <div class="timeline-title">布袋國民中學 / 教學組長</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2002 年 - 2003 年</div>
+                        <div class="timeline-title">台中私立弘文中學 / 導師</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="column-title">學歷背景</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2016 年畢業</div>
+                        <div class="timeline-title">私立稻江管理學院 / 動畫遊戲設計所</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1999 年畢業</div>
+                        <div class="timeline-title">國立彰化師範大學 / 數學系</div>
+                    </div>                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">1995 年畢業</div>
+                        <div class="timeline-title">國立新營高級中學 / 普通科</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1992 年畢業</div>
+                        <div class="timeline-title">臺南縣立菁寮國民中學</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1989 年畢業</div>
+                        <div class="timeline-title">臺南縣後壁鄉菁寮國民小學</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-title">行政實績與專案</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>跨校性競賽承辦與物流統籌</h3>
+                    <p>擔任地方大型科學閱讀力或程式設計競賽之主要聯絡人與技術主辦，負責跨校學生報名系統維護、場地協調、與任務追蹤管理，確保上百名師生參賽流程順暢。</p>
+                    <span class="tag">專案管理 / 系統協調</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>校園官方網站重建與品牌優化</h3>
+                    <p>重構學校入口網站架構，優化 RWD 行動版介面與無障礙網頁規範。整合各處室宣傳圖資與填報系統連結，大幅提升家長與外部訪客的瀏覽便利性。</p>
+                    <span class="tag">網頁管理 / 數位宣傳</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>資通安全防護與流程自動化</h3>
+                    <p>規劃年度資安通報演練，導入自動化腳本優化內部重複性行政資料填報，將原本冗長的資訊稽核工作轉化為結構化流程，降低基層同仁填報負擔。</p>
+                    <span class="tag">資通安全 / 行政自動化</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 莊曜旭. 本網頁專為教職行政履歷展示設計</p>
+    </footer>
+
+</body>
+</html>
