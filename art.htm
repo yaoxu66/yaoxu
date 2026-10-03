@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓越藝術．創意未來 | 學校特色美術班</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Serif TC & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        art: {
+                            50: '#fbf8f3',
+                            100: '#f4ede2',
+                            200: '#e8d8c2',
+                            300: '#d7bc9c',
+                            400: '#c49c74',
+                            500: '#b28153',
+                            600: '#9d6844',
+                            700: '#7f5038',
+                            800: '#684232',
+                            900: '#56382b',
+                        },
+                        slate: {
+                            850: '#151f32',
+                            950: '#0b0f19'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .font-serif-custom {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-card {
+            background: rgba(21, 31, 50, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 160, 93, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(178, 129, 83, 0.25);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #f4ede2 0%, #d7bc9c 50%, #b28153 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #ffe3be 0%, #d4a05d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a364f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b28153;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-art-500 selection:text-white">
+
+    <!-- Toast Notification for External Links -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-art-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-art-400/30 pointer-events-none">
+        <i class="fa-solid " id="toast-icon"></i>
+        <span id="toast-msg" class="text-sm font-medium"></span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-nav border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-art-400 to-art-700 flex items-center justify-center text-white font-serif-custom font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+                        藝
+                    </div>
+                    <div>
+                        <span class="font-serif-custom font-bold text-lg text-white block leading-none">市立高級中學</span>
+                        <span class="text-xs text-art-300 tracking-wider font-sans uppercase">Art Special Class</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                    <a href="#features" class="hover:text-art-300 transition-colors">特色理念</a>
+                    <a href="#curriculum" class="hover:text-art-300 transition-colors">課程亮點</a>
+                    <a href="#gallery" class="hover:text-art-300 transition-colors">作品展示</a>
+                    <a href="#pathways" class="hover:text-art-300 transition-colors">未來進路</a>
+                    <a href="#resources" class="hover:text-art-300 transition-colors">常用連結</a>
+                </nav>
+
+                <!-- High visibility CTA -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="https://example.com/admissions" target="_blank" onclick="showToast('正在跳轉至學校最新招生簡章專區...', 'fa-external-link-alt')" class="relative inline-flex items-center gap-2 bg-gradient-to-r from-art-500 to-art-700 hover:from-art-400 hover:to-art-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-art-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                        <span>招生簡章</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-80"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
+            <a href="#features" class="block py-2 text-slate-300 hover:text-art-300 font-medium mobile-link">特色理念</a>
+            <a href="#curriculum" class="block py-2 text-slate-300 hover:text-art-300 font-medium mobile-link">課程亮點</a>
+            <a href="#gallery" class="block py-2 text-slate-300 hover:text-art-300 font-medium mobile-link">作品展示</a>
+            <a href="#pathways" class="block py-2 text-slate-300 hover:text-art-300 font-medium mobile-link">未來進路</a>
+            <a href="#resources" class="block py-2 text-slate-300 hover:text-art-300 font-medium mobile-link">常用連結</a>
+            <div class="pt-2">
+                <a href="https://example.com/admissions" target="_blank" onclick="showToast('正在跳轉至學校最新招生簡章專區...', 'fa-external-link-alt')" class="w-full flex items-center justify-center gap-2 bg-art-600 hover:bg-art-500 text-white text-sm font-semibold py-3 rounded-xl shadow-lg">
+                    <span>最新招生簡章</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Background Decorative Orbs -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-art-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-art-500/10 border border-art-400/30 text-art-300 text-xs sm:text-sm font-medium">
+                        <span class="flex h-2 w-2 rounded-full bg-art-400 animate-pulse"></span>
+                        探索藝術極限．培育全方位美學人才
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-custom font-bold text-white tracking-tight leading-tight">
+                        用色彩點亮未來<br>
+                        <span class="text-gradient-gold">用創意定義世界</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        學校特色美術班結合札實的古典繪畫扎根、現代視覺設計與跨域數位藝術。我們提供專業展演舞台與專屬術科創作空間，陪伴每位懷抱藝術夢想的學子揮灑無限天賦。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-art-500 to-art-700 hover:from-art-400 hover:to-art-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-art-600/20 hover:scale-105 transition-all">
+                            <span>探索美術班</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                        <a href="#resources" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 glass-card hover:bg-white/10 text-slate-200 font-medium px-7 py-3.5 rounded-full border border-white/15 transition-all">
+                            <i class="fa-solid fa-bullhorn text-art-300"></i>
+                            <span>最新招生資訊</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Info Stats -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold font-serif-custom text-art-300">100%</p>
+                            <p class="text-xs text-slate-400 mt-1">專業術科教室配置</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold font-serif-custom text-art-300">每年</p>
+                            <p class="text-xs text-slate-400 mt-1">獨立畢業展覽與班展</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold font-serif-custom text-art-300">多元</p>
+                            <p class="text-xs text-slate-400 mt-1">國考與國內外藝術升學</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Showcase Image Column -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Frame Effect -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-art-400 to-indigo-500 rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900 border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" alt="美術班學生創作" class="w-full h-[420px] object-cover hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+                                <span class="text-xs font-semibold uppercase text-art-300 tracking-wider">Art Studio Life</span>
+                                <h3 class="text-lg font-serif-custom font-bold text-white mt-1">沉浸式創作工坊環境</h3>
+                                <p class="text-xs text-slate-300 mt-1 font-light">繪畫、水墨、陶藝與電繪專屬工坊，激發極致創作靈感。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: PROGRAM FEATURES (班級特色) -->
+    <section id="features" class="py-20 bg-slate-900/60 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-art-400 mb-2">Program Features</h2>
+                <p class="text-3xl sm:text-4xl font-serif-custom font-bold text-white">為什麼選擇我們的特色美術班？</p>
+                <div class="w-16 h-1 bg-art-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-art-500/10 border border-art-400/20 flex items-center justify-center text-art-300 text-2xl mb-6">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-serif-custom font-bold text-white mb-3">專業頂尖師資</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        聘請藝術碩博士、現役藝術家與具備多年術科輔導經驗的資深名師親自授課與指引創作。
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-art-500/10 border border-art-400/20 flex items-center justify-center text-art-300 text-2xl mb-6">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-serif-custom font-bold text-white mb-3">完整術科課程</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        涵蓋素描、水彩、水墨、書法、視覺設計、立體造型與數位創作，奠定全方位藝術基礎。
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-art-500/10 border border-art-400/20 flex items-center justify-center text-art-300 text-2xl mb-6">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="text-xl font-serif-custom font-bold text-white mb-3">跨域藝術採風</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        定期舉辦戶外戶外寫生實務、美術館專題導覽與跨領域藝術專題研討，拓展視野與視野。
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-art-500/10 border border-art-400/20 flex items-center justify-center text-art-300 text-2xl mb-6">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h3 class="text-xl font-serif-custom font-bold text-white mb-3">獨立展覽藝廊</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        擁有獨立專屬畫室、數位繪圖教室與校園藝術展覽廳，為學生提供最完整的展演與創作發表舞台。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CURRICULUM HIGHLIGHTS (課程規劃與亮點) -->
+    <section id="curriculum" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-art-400 mb-2">Curriculum Highlights</h2>
+                <p class="text-3xl sm:text-4xl font-serif-custom font-bold text-white">扎實與前瞻並重的學習藍圖</p>
+                <p class="text-slate-400 text-sm mt-3">兼顧升學術科測驗需求與現代數位藝術趨勢</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Course 1 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col sm:flex-row gap-6 items-start">
+                    <div class="w-full sm:w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=400&auto=format&fit=crop" alt="素描與西畫" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-art-300 bg-art-500/10 px-3 py-1 rounded-full">西畫傳統與現代</span>
+                        <h3 class="text-xl font-serif-custom font-bold text-white mt-2 mb-2">素描、水彩與油畫專修</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            注重光影觀念、結構造型與色彩肌理表現。從基礎靜物到人體寫生，打下深厚的西方繪畫功力。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col sm:flex-row gap-6 items-start">
+                    <div class="w-full sm:w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                        <img src="https://images.unsplash.com/photo-1582561847155-77f6b955099c?q=80&w=400&auto=format&fit=crop" alt="水墨與國畫" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-art-300 bg-art-500/10 px-3 py-1 rounded-full">東方藝術美學</span>
+                        <h3 class="text-xl font-serif-custom font-bold text-white mt-2 mb-2">水墨、工筆與書法墨韻</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            領略東方筆墨意境，培養水墨渲染、工筆勾勒與書法線條韻味，實現東方當代創作的轉化。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col sm:flex-row gap-6 items-start">
+                    <div class="w-full sm:w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=400&auto=format&fit=crop" alt="數位藝術與設計" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-art-300 bg-art-500/10 px-3 py-1 rounded-full">科技與設計應用</span>
+                        <h3 class="text-xl font-serif-custom font-bold text-white mt-2 mb-2">數位繪圖與視覺傳達</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            引入數位電繪板與專業創作軟體教學，涵蓋視覺設計、字體學、平面構成與動態圖像視覺初步。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col sm:flex-row gap-6 items-start">
+                    <div class="w-full sm:w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                        <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?q=80&w=400&auto=format&fit=crop" alt="展覽與實務" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-art-300 bg-art-500/10 px-3 py-1 rounded-full">策展實事經驗</span>
+                        <h3 class="text-xl font-serif-custom font-bold text-white mt-2 mb-2">畢業展覽策劃與藝術採風</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            親身參與校內外展覽策劃、畫冊編輯、文宣設計與展場佈置，提早體驗藝術實務工作流程。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ARTWORK GALLERY (學生作品展覽) -->
+    <section id="gallery" class="py-24 bg-slate-900/60 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-art-400 mb-2">Student Gallery</h2>
+                <p class="text-3xl sm:text-4xl font-serif-custom font-bold text-white">學生精彩創作風采</p>
+                <p class="text-slate-400 text-sm mt-3">展現學子豐沛的創作能量與獨特藝術視角（點擊圖片可放大賞析）</p>
+            </div>
+
+            <!-- Gallery Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10">
+                <button class="gallery-filter px-5 py-2 rounded-full text-sm font-medium bg-art-500 text-white transition-all" data-filter="all">全部作品</button>
+                <button class="gallery-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-filter="western">西畫創作</button>
+                <button class="gallery-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-filter="ink">水墨國畫</button>
+                <button class="gallery-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-filter="design">平面設計</button>
+                <button class="gallery-filter px-5 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-filter="3d">立體造型</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                <!-- Artwork 1 -->
+                <div class="gallery-item western cursor-pointer group" onclick="openLightbox('晨光幽谷的記憶', '高三 林小蓁', '靜物水彩 / 8K', 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800&auto=format&fit=crop" alt="晨光幽谷的記憶" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">西畫類</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">晨光幽谷的記憶</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：林小蓁 (靜物水彩)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artwork 2 -->
+                <div class="gallery-item ink cursor-pointer group" onclick="openLightbox('墨韻山川秋意濃', '高二 張偉明', '水墨設色 / 宣紙', 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?q=80&w=800&auto=format&fit=crop" alt="墨韻山川秋意濃" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">水墨國畫</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">墨韻山川秋意濃</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：張偉明 (水墨山水)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artwork 3 -->
+                <div class="gallery-item design cursor-pointer group" onclick="openLightbox('未來視覺解構', '高三 陳品妤', '數位繪圖與平面設計', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" alt="未來視覺解構" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">平面設計</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">未來視覺解構</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：陳品妤 (視覺傳達)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artwork 4 -->
+                <div class="gallery-item 3d cursor-pointer group" onclick="openLightbox('流動的幾何和聲', '高一 黃冠宇', '複合媒材雕塑', 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop" alt="流動的幾何和聲" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">立體造型</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">流動的幾何和聲</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：黃冠宇 (陶藝與石膏)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artwork 5 -->
+                <div class="gallery-item western cursor-pointer group" onclick="openLightbox('光之交響曲', '高二 許雅婷', '炭精筆素描 / 全開', 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop" alt="光之交響曲" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">西畫類</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">光之交響曲</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：許雅婷 (石膏像素描)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artwork 6 -->
+                <div class="gallery-item design cursor-pointer group" onclick="openLightbox('永續海洋策展提案', '高三 廖建豪', '品牌識別與包裝', 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop')">
+                    <div class="glass-card rounded-2xl overflow-hidden relative border border-white/10">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" alt="永續海洋策展提案" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-art-300 font-medium">平面設計</span>
+                            <h4 class="text-lg font-serif-custom font-bold text-white mt-1">永續海洋策展提案</h4>
+                            <p class="text-xs text-slate-400 mt-1">創作者：廖建豪 (企業識別設計)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: FUTURE PATHWAYS (未來進路) -->
+    <section id="pathways" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-art-400 mb-2">Future Pathways</h2>
+                <p class="text-3xl sm:text-4xl font-serif-custom font-bold text-white">多元廣闊的未來發展</p>
+                <p class="text-slate-400 text-sm mt-3">奠定多元藝術根基，銜接國內外頂尖藝術設計學府</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Path 1 -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-art-400">
+                    <i class="fa-solid fa-paintbrush text-2xl text-art-300 mb-4"></i>
+                    <h3 class="text-lg font-serif-custom font-bold text-white mb-2">純藝術創作領域</h3>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li>• 油畫 / 水彩專業創作者</li>
+                        <li>• 東方水墨與當代書畫家</li>
+                        <li>• 雕塑與裝置藝術家</li>
+                        <li>• 美術展覽策展人 / 畫廊管理</li>
+                    </ul>
+                </div>
+
+                <!-- Path 2 -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-art-400">
+                    <i class="fa-solid fa-pen-nib text-2xl text-art-300 mb-4"></i>
+                    <h3 class="text-lg font-serif-custom font-bold text-white mb-2">視覺傳達與設計</h3>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li>• 視覺傳達設計師</li>
+                        <li>• 品牌包裝與商業設計</li>
+                        <li>• 出版品與插畫繪本家</li>
+                        <li>• UI / UX 介面設計師</li>
+                    </ul>
+                </div>
+
+                <!-- Path 3 -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-art-400">
+                    <i class="fa-solid fa-shapes text-2xl text-art-300 mb-4"></i>
+                    <h3 class="text-lg font-serif-custom font-bold text-white mb-2">空間與工業設計</h3>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li>• 建築設計學系</li>
+                        <li>• 室內設計與景觀規劃</li>
+                        <li>• 工業設計與產品開發</li>
+                        <li>• 舞台與劇場美術設計</li>
+                    </ul>
+                </div>
+
+                <!-- Path 4 -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-art-400">
+                    <i class="fa-solid fa-gamepad text-2xl text-art-300 mb-4"></i>
+                    <h3 class="text-lg font-serif-custom font-bold text-white mb-2">動畫與數位多媒體</h3>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li>• 3D 動畫與特效師</li>
+                        <li>• 遊戲美術原畫師</li>
+                        <li>• 影音剪輯與動態圖像</li>
+                        <li>• 數位新媒體藝術家</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Honor CTA Box -->
+            <div class="mt-12 glass-card p-8 rounded-3xl bg-gradient-to-r from-art-900/40 to-slate-900 border border-art-400/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-5">
+                    <div class="w-12 h-12 rounded-full bg-art-500/20 flex items-center justify-center text-art-300 text-2xl shrink-0">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-serif-custom font-bold text-white">歷年升學榜單與獲獎榮譽</h4>
+                        <p class="text-xs text-slate-400 mt-1">查看美術班畢業生錄取國立頂尖藝術大學與全國學生美展獲獎紀錄</p>
+                    </div>
+                </div>
+                <a href="https://example.com/honors" target="_blank" onclick="showToast('正在跳轉至學校歷年榜單與榮譽專區...', 'fa-trophy')" class="shrink-0 bg-art-500 hover:bg-art-400 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all shadow-lg">
+                    查看完整榜單 ↗
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: QUICK EXTERNAL RESOURCES (常用外連與最新動態 - 低維護重點) -->
+    <section id="resources" class="py-24 bg-slate-900/80 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium mb-3">
+                    <i class="fa-solid fa-link"></i> Live Resources
+                </div>
+                <p class="text-3xl sm:text-4xl font-serif-custom font-bold text-white">最新資訊與常用連結</p>
+                <p class="text-slate-400 text-sm mt-3">點擊下方連結可即時導向學校官方系統與雲端資源專區</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Resource Card 1 -->
+                <a href="https://example.com/admissions" target="_blank" onclick="showToast('導向最新招生簡章公告...', 'fa-bullhorn')" class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:bg-white/5 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-art-300 transition-colors"></i>
+                        </div>
+                        <h4 class="text-lg font-serif-custom font-bold text-white group-hover:text-art-300 transition-colors">最新招生簡章</h4>
+                        <p class="text-xs text-slate-400 mt-2">包含當年度美術術科測驗日程、報名資格與術科採計項目。</p>
+                    </div>
+                    <span class="text-xs text-art-400 font-medium mt-6 block">校務系統即時連線 ↗</span>
+                </a>
+
+                <!-- Resource Card 2 -->
+                <a href="https://example.com/exam-papers" target="_blank" onclick="showToast('導向歷年術科考古題雲端專區...', 'fa-folder-open')" class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:bg-white/5 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-folder-closed"></i>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-art-300 transition-colors"></i>
+                        </div>
+                        <h4 class="text-lg font-serif-custom font-bold text-white group-hover:text-art-300 transition-colors">歷年試題與下載</h4>
+                        <p class="text-xs text-slate-400 mt-2">下載歷年美術班術科測驗考古題、報名表單與實施計畫。</p>
+                    </div>
+                    <span class="text-xs text-art-400 font-medium mt-6 block">Google Cloud 雲端硬碟 ↗</span>
+                </a>
+
+                <!-- Resource Card 3 -->
+                <a href="https://instagram.com" target="_blank" onclick="showToast('導向美術班官方 Instagram 粉專...', 'fa-camera')" class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:bg-white/5 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-art-300 transition-colors"></i>
+                        </div>
+                        <h4 class="text-lg font-serif-custom font-bold text-white group-hover:text-art-300 transition-colors">美術班日常 IG</h4>
+                        <p class="text-xs text-slate-400 mt-2">即時掌握學生的日常寫生、畫室創作花絮與最新展覽動態。</p>
+                    </div>
+                    <span class="text-xs text-art-400 font-medium mt-6 block">Instagram 社群粉專 ↗</span>
+                </a>
+
+                <!-- Resource Card 4 -->
+                <a href="https://facebook.com" target="_blank" onclick="showToast('導向美術班 Facebook 粉絲專頁...', 'fa-share-nodes')" class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:bg-white/5 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-art-300 transition-colors"></i>
+                        </div>
+                        <h4 class="text-lg font-serif-custom font-bold text-white group-hover:text-art-300 transition-colors">FB 畢業展專頁</h4>
+                        <p class="text-xs text-slate-400 mt-2">年度畢業展覽現場紀錄、線上作品展與畫冊預購發布。</p>
+                    </div>
+                    <span class="text-xs text-art-400 font-medium mt-6 block">Facebook 官方專頁 ↗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-slate-950 pt-16 pb-12 border-t border-white/10 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                <!-- School Info Column -->
+                <div class="md:col-span-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-art-600 flex items-center justify-center text-white font-serif-custom font-bold text-lg">
+                            藝
+                        </div>
+                        <span class="text-lg font-serif-custom font-bold text-white">市立高級中學．特色美術班</span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400 max-w-md">
+                        致力於提供優質藝術教育環境，培育兼具藝術涵養、當代視覺思考與專業繪畫技能的優秀美學人才。
+                    </p>
+                    <div class="text-xs space-y-1.5 text-slate-300 pt-2">
+                        <p><i class="fa-solid fa-location-dot w-5 text-art-400"></i> 校址：100 台北市藝術大道 88 號（藝采樓 3-5 樓術科教室）</p>
+                        <p><i class="fa-solid fa-phone w-5 text-art-400"></i> 聯絡電話：(02) 2345-6789 分機 301 / 302</p>
+                        <p><i class="fa-solid fa-envelope w-5 text-art-400"></i> 諮詢信箱：art-class@school.edu.tw</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Quick Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h5 class="text-white font-serif-custom font-bold text-base mb-2">單元導覽</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#features" class="hover:text-art-300 transition-colors">班級特色理念</a></li>
+                        <li><a href="#curriculum" class="hover:text-art-300 transition-colors">專業課程規劃</a></li>
+                        <li><a href="#gallery" class="hover:text-art-300 transition-colors">學生作品展示</a></li>
+                        <li><a href="#pathways" class="hover:text-art-300 transition-colors">升學與職涯進路</a></li>
+                    </ul>
+                </div>
+
+                <!-- Transport & Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h5 class="text-white font-serif-custom font-bold text-base mb-2">校園資訊</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="https://maps.google.com" target="_blank" onclick="showToast('跳轉至 Google 地圖地標...', 'fa-map')" class="hover:text-art-300 transition-colors"><i class="fa-solid fa-map-location-dot mr-1"></i> 交通指引與地圖 ↗</a></li>
+                        <li><a href="https://example.com" target="_blank" class="hover:text-art-300 transition-colors"><i class="fa-solid fa-graduation-cap mr-1"></i> 返回學校首頁 ↗</a></li>
+                        <li><a href="https://example.com/privacy" target="_blank" class="hover:text-art-300 transition-colors"><i class="fa-solid fa-shield-halved mr-1"></i> 個人資料保護說明</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 市立高級中學 特色美術班 版權所有．Art Special Program All Rights Reserved.</p>
+                <p class="text-slate-600">一頁式低維護網頁設計原型</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Popup Modal for Student Artworks -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full glass-card rounded-2xl overflow-hidden border border-white/20 shadow-2xl flex flex-col md:flex-row">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-900/80 text-white hover:bg-art-500 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="md:w-2/3 bg-black flex items-center justify-center max-h-[70vh]">
+                <img id="lightbox-img" src="" alt="" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="md:w-1/3 p-8 flex flex-col justify-between bg-slate-900">
+                <div>
+                    <span id="lightbox-medium" class="text-xs font-semibold text-art-300 bg-art-500/10 px-3 py-1 rounded-full inline-block mb-3"></span>
+                    <h3 id="lightbox-title" class="text-2xl font-serif-custom font-bold text-white mb-2"></h3>
+                    <p id="lightbox-author" class="text-sm text-slate-300 font-medium"></p>
+                </div>
+                <div class="pt-6 border-t border-white/10 mt-6">
+                    <p class="text-xs text-slate-400">所有作品版權均屬原創學生與學校美術班共同所有。</p>
+                    <button onclick="closeLightbox()" class="w-full mt-4 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-2.5 rounded-xl transition-colors">關閉視窗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Interactive Scripts -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toast Notification System for Dynamic/External Links
+        function showToast(message, iconClass = 'fa-info-circle') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fa-solid ${iconClass}`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Gallery Filter Logic
+        const filterBtns = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-art-500', 'text-white');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                // Add active to current
+                btn.classList.classList?.remove('bg-slate-800', 'text-slate-300');
+                btn.classList.add('bg-art-500', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Modal Logic
+        function openLightbox(title, author, medium, imgSrc) {
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-author').textContent = author;
+            document.getElementById('lightbox-medium').textContent = medium;
+            document.getElementById('lightbox-img').src = imgSrc;
+
+            const modal = document.getElementById('lightbox');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on clicking outside content
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
