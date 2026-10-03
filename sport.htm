@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓越體育班 | 培育未來體育菁英與學術人才</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            blue: '#1e3a8a',
+                            accent: '#f97316', // Dynamic vibrant orange
+                            'accent-hover': '#ea580c',
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Microsoft JhengHei', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.90) 100%), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .card-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- 1. 頂部導覽列 Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-accent flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg leading-tight tracking-wide group-hover:text-brand-accent transition-colors">OO高級中學</span>
+                        <span class="text-xs text-slate-400 font-medium">特色體育班 Sports Class</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+                    <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">班級理念</a>
+                    <a href="#specialties" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">特色項目</a>
+                    <a href="#facilities" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">訓練環境</a>
+                    <a href="#coaches" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">師資教練</a>
+                    <a href="#portal" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">招生與榜單</a>
+                    <a href="#faq" class="px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent hover:bg-slate-800/50 transition-all">常見問題</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="hidden lg:block">
+                    <a href="#portal" class="bg-brand-accent hover:bg-brand-accent-hover text-white font-semibold px-5 py-2.5 rounded-full text-sm shadow-md hover:shadow-orange-500/20 transition-all flex items-center gap-2">
+                        <span>報名資訊</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="切換選單">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">班級理念</a>
+            <a href="#specialties" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">特色項目</a>
+            <a href="#facilities" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">訓練環境</a>
+            <a href="#coaches" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">師資教練</a>
+            <a href="#portal" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">招生與榜單</a>
+            <a href="#faq" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800">常見問題</a>
+            <a href="#portal" class="mobile-nav-link block text-center mt-4 bg-brand-accent text-white font-semibold px-4 py-2.5 rounded-xl">官方報名入口</a>
+        </div>
+    </nav>
+
+    <!-- 2. Hero 主視覺區塊 -->
+    <header class="relative min-h-screen pt-20 flex items-center gradient-hero text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    全台優質體育特色學校
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-6">
+                    揮灑汗水，追逐夢想<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-amber-500">培育未來體育菁英</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
+                    我們致力於提供專業且系統化的體育專長訓練，同時高度重視學術與品格教育。在這裡，每一位運動員都能在賽場與學業上發光發熱。
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://example.com/admission" target="_blank" rel="noopener" class="bg-brand-accent hover:bg-brand-accent-hover text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-3">
+                        <i class="fa-solid fa-file-signature text-lg"></i>
+                        <span>最新招生簡章</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-70"></i>
+                    </a>
+                    <a href="#portal" class="bg-slate-800/80 hover:bg-slate-800 text-slate-100 border border-slate-700 font-bold px-8 py-4 rounded-xl transition-all flex items-center gap-3 backdrop-blur-sm">
+                        <i class="fa-solid fa-award text-amber-400 text-lg"></i>
+                        <span>歷年榮耀榜單</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-slate-800/80">
+                <div class="p-4 rounded-xl bg-slate-900/40 backdrop-blur-sm border border-slate-800">
+                    <div class="text-3xl font-extrabold text-brand-accent mb-1">100%</div>
+                    <div class="text-sm text-slate-400">專業級國家教練陣容</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 backdrop-blur-sm border border-slate-800">
+                    <div class="text-3xl font-extrabold text-amber-400 mb-1">50+</div>
+                    <div class="text-sm text-slate-400">全國賽事金牌紀錄</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 backdrop-blur-sm border border-slate-800">
+                    <div class="text-3xl font-extrabold text-sky-400 mb-1">95%</div>
+                    <div class="text-sm text-slate-400">國立大學升學錄取率</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 backdrop-blur-sm border border-slate-800">
+                    <div class="text-3xl font-extrabold text-emerald-400 mb-1">1:1</div>
+                    <div class="text-sm text-slate-400">學業與專長雙軌並行</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. 班級理念與特色 About / Core Values -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">Core Values</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">德智體群美，學業與專長並重</p>
+                <div class="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-slate-600 text-lg">我們不只訓練優秀的運動員，更重視全人教育，培養具備堅毅精神、團隊合作與競爭力的未來人才。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Value Card 1 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover-effect">
+                    <div class="w-14 h-14 bg-orange-100 text-brand-accent rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">專業極致訓練</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        引進科學化訓練系統與週期化體能規劃，由國家級專業教練親自帶隊訓練，精準提升專長競技表現。
+                    </p>
+                </div>
+
+                <!-- Value Card 2 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover-effect">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">完善學業輔導</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        針對賽事與集訓安排課後補救教學與個別化輔導，確保專長發展的同時，兼顧各學科能力與升學優勢。
+                    </p>
+                </div>
+
+                <!-- Value Card 3 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover-effect">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">全方位運動防護</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        配置專任運動防護員，建立完整防護與復健機制，提供即時傷病處置與恢復訓練，保護選手職業生涯。
+                    </p>
+                </div>
+
+                <!-- Value Card 4 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover-effect">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">健全品格塑造</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        強調運動員精神、紀律與團隊榮譽感。透過賽事歷練與生活管理，淬鍊抗壓性與解決問題的領導能力。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 專長項目展示 Sports Specialties -->
+    <section id="specialties" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">Focus Sports</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">重點發展專長項目</p>
+                </div>
+                <p class="text-slate-600 max-w-md mt-4 md:mt-0 text-sm">
+                    本校體育班招收多元專長項目，擁有豐富資源與專用場地，協助每位選手發揮潛能。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sport Item 1: 田徑 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" alt="田徑隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">田徑代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">田徑 (Track & Field)</h3>
+                            <p class="text-slate-600 text-sm mb-4">包含短跑、中長跑、跳躍與投擲項目，擁有標準400公尺蒙多跑道與專業檢測器材。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 全國中等學校運動會金牌隊伍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport Item 2: 籃球 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80" alt="籃球隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">籃球代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">籃球 (Basketball)</h3>
+                            <p class="text-slate-600 text-sm mb-4">專注戰術配合、個人技巧與高強度體能訓練，具備專業室內木地板球場與系統化影像分析。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 乙級聯賽常勝軍/甲級培訓班底</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport Item 3: 羽球 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80" alt="羽球隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">羽球代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">羽球 (Badminton)</h3>
+                            <p class="text-slate-600 text-sm mb-4">強化專項步法、反應速度與體能續航，配有標準空調羽球館與發球機配備。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 全國排名賽優異成績</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport Item 4: 跆拳道 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="跆拳道隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">跆拳道代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">跆拳道 (Taekwondo)</h3>
+                            <p class="text-slate-600 text-sm mb-4">包含對打與品勢訓練，引進電子護具系統與專業武道對打專業場地。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 多次入選青少年國手陣容</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport Item 5: 游泳 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=800&q=80" alt="游泳隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">游泳代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">游泳 (Swimming)</h3>
+                            <p class="text-slate-600 text-sm mb-4">室內溫水標準游泳池，全天候水質與水溫監控，訓練四式專長與陸上體能培訓。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 破縣市紀錄優秀紀錄保持</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport Item 6: 軟式網球/其他 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm card-hover-effect flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&w=800&q=80" alt="網球隊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">網球代表隊</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">網球 / 其他專長</h3>
+                            <p class="text-slate-600 text-sm mb-4">配備硬地與紅土網球場，同時視年度招生狀況提供客製化專長選手輔導機制。</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span><i class="fa-solid fa-trophy text-amber-500 mr-1"></i> 全國中小學錦標賽獲獎</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 訓練環境與設施 Facilities -->
+    <section id="facilities" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">Training Grounds</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">國家級頂級訓練環境</p>
+                <div class="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Facility Item 1 -->
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 items-center">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80" alt="重量訓練室" class="w-full sm:w-40 h-32 rounded-xl object-cover">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2"><i class="fa-solid fa-dumbbell text-brand-accent mr-2"></i>專業重量訓練室</h3>
+                        <p class="text-slate-600 text-sm">配備Hammer Strength自由重量器材、深蹲架、爆發力訓練區域與心肺有氧設備。</p>
+                    </div>
+                </div>
+
+                <!-- Facility Item 2 -->
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 items-center">
+                    <img src="https://images.unsplash.com/photo-1576678927484-cc909957088c?auto=format&fit=crop&w=400&q=80" alt="運動防護室" class="w-full sm:w-40 h-32 rounded-xl object-cover">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2"><i class="fa-solid fa-kit-medical text-brand-accent mr-2"></i>獨立運動防護室</h3>
+                        <p class="text-slate-600 text-sm">配備專業超音波、冰熱敷設備、貼紮診療檯及專任防護員協助每日訓練防護。</p>
+                    </div>
+                </div>
+
+                <!-- Facility Item 3 -->
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 items-center">
+                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80" alt="多功能體育館" class="w-full sm:w-40 h-32 rounded-xl object-cover">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2"><i class="fa-solid fa-building text-brand-accent mr-2"></i>室內多功能體育館</h3>
+                        <p class="text-slate-600 text-sm">楓木彈性地板、符合比賽規範之照明與空調系統，適用於籃球、羽球及大型集訓。</p>
+                    </div>
+                </div>
+
+                <!-- Facility Item 4 -->
+                <div class="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 items-center">
+                    <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=400&q=80" alt="標準田徑場" class="w-full sm:w-40 h-32 rounded-xl object-cover">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2"><i class="fa-solid fa-person-running text-brand-accent mr-2"></i>400m 標準田徑場</h3>
+                        <p class="text-slate-600 text-sm">國際田總認證蒙多跑道、夜間高照度照明設備、優質天然草皮田賽訓練區。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 專業師資與教練團隊 Coaches & Faculty -->
+    <section id="coaches" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">Our Team</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold">專業導師與國家級教練陣容</p>
+                <div class="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Coach 1 -->
+                <div class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 p-6 text-center card-hover-effect">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="教練照片" class="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700">
+                    <h3 class="text-xl font-bold mb-1">張華明 教練</h3>
+                    <p class="text-brand-accent text-sm font-semibold mb-3">田徑隊 總教練</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        前田徑國家代表隊選手<br>
+                        國家级 A 級田徑教練證<br>
+                        指導選手多次榮獲全中運金牌
+                    </p>
+                </div>
+
+                <!-- Coach 2 -->
+                <div class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 p-6 text-center card-hover-effect">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="教練照片" class="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700">
+                    <h3 class="text-xl font-bold mb-1">李國強 教練</h3>
+                    <p class="text-brand-accent text-sm font-semibold mb-3">籃球隊 主教練</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        前職業聯賽助理教練<br>
+                        中華民國籃球協會 A 級教練<br>
+                        專長戰術規劃與爆發力訓練
+                    </p>
+                </div>
+
+                <!-- Coach 3 -->
+                <div class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 p-6 text-center card-hover-effect">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="教師照片" class="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700">
+                    <h3 class="text-xl font-bold mb-1">陳雅婷 老師</h3>
+                    <p class="text-brand-accent text-sm font-semibold mb-3">體育班 導師 / 學術協調</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        國立臺灣師範大學體育碩士<br>
+                        專責體育班學科學習輔導<br>
+                        升學進路與生涯發展規劃專家
+                    </p>
+                </div>
+
+                <!-- Coach 4 -->
+                <div class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 p-6 text-center card-hover-effect">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=300&q=80" alt="防護員照片" class="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700">
+                    <h3 class="text-xl font-bold mb-1">林志豪 防護員</h3>
+                    <p class="text-brand-accent text-sm font-semibold mb-3">專任運動防護員</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        國家高考合格運動防護員<br>
+                        專長運動按摩、貼紮與急救處置<br>
+                        運動傷害預防與術後復健指導
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 榮譽與外部連結（免頻繁維護專區） Portal & External Links -->
+    <section id="portal" class="py-24 bg-gradient-to-b from-slate-100 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">Information Portal</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">招生簡章、榜單與最新消息</p>
+                <div class="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-slate-600 text-sm">
+                    為了提供您最即時、精確的資訊，點擊下方卡片將直接連結至「本校官方公告系統」，查看最新發布內容。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Portal Link 1 -->
+                <a href="https://example.com/admission" target="_blank" rel="noopener" class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-accent transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-brand-accent flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-accent transition-colors">最新招生簡章</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                            查看年度體育班甄選簡章、報名日程、專長項目名額與術科測驗規範。
+                        </p>
+                    </div>
+                    <div class="flex items-center text-xs font-bold text-brand-accent gap-2">
+                        <span>前往官方報名系統</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+
+                <!-- Portal Link 2 -->
+                <a href="https://example.com/honor" target="_blank" rel="noopener" class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-accent transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-accent transition-colors">歷年升學榜單</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                            查閱歷屆畢業生考取國立體育大學、師範大學及各大名校錄取榮譽榜。
+                        </p>
+                    </div>
+                    <div class="flex items-center text-xs font-bold text-amber-600 gap-2">
+                        <span>查看詳細榜單</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+
+                <!-- Portal Link 3 -->
+                <a href="https://example.com/news" target="_blank" rel="noopener" class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-accent transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-accent transition-colors">最新消息與賽事</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                            即時掌握體育班最新賽事戰報、獲獎榮譽、集訓通知與學校最新動態。
+                        </p>
+                    </div>
+                    <div class="flex items-center text-xs font-bold text-blue-600 gap-2">
+                        <span>進入學校公告欄</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+
+                <!-- Portal Link 4 -->
+                <a href="https://example.com/rules" target="_blank" rel="noopener" class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-accent transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-accent transition-colors">體育班管理法規</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                            參閱體育班設置要點、學業課輔實施辦法、獎學金申請及生活管理規範。
+                        </p>
+                    </div>
+                    <div class="flex items-center text-xs font-bold text-slate-700 gap-2">
+                        <span>閱讀相關法規</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 常見問題 FAQ Accordion -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-brand-accent mb-2">FAQ</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">常見問題解答</p>
+                <div class="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button class="accordion-btn w-full px-6 py-5 text-left font-bold text-slate-800 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+                        <span class="text-base sm:text-lg"><i class="fa-solid fa-circle-question text-brand-accent mr-3"></i>進入體育班課業會不會跟不上？</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content hidden px-6 py-5 bg-white text-slate-600 text-sm border-t border-slate-100 leading-relaxed">
+                        不會。本校高度重視體育班學術能力，每天皆有完整學科課程安排。賽前或集訓期間若有缺課，學校會在課後或週末安排專業師資進行補救教學與專題輔導，確保學業與專長發展雙軌並進。
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button class="accordion-btn w-full px-6 py-5 text-left font-bold text-slate-800 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+                        <span class="text-base sm:text-lg"><i class="fa-solid fa-circle-question text-brand-accent mr-3"></i>體育班每日訓練時間如何安排？</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content hidden px-6 py-5 bg-white text-slate-600 text-sm border-t border-slate-100 leading-relaxed">
+                        訓練時間主要分為「晨訓」（約 06:30 - 07:30，視專長而定）與「下午專長課」（約 15:00 - 18:00）。正式學科課程時間皆正常上課，以維持良好的作息規律與專注力。
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button class="accordion-btn w-full px-6 py-5 text-left font-bold text-slate-800 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+                        <span class="text-base sm:text-lg"><i class="fa-solid fa-circle-question text-brand-accent mr-3"></i>外縣市或遠距離學生是否提供住宿？</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content hidden px-6 py-5 bg-white text-slate-600 text-sm border-t border-slate-100 leading-relaxed">
+                        學校設有設備完善的男女生學生宿舍，配有專任舍監與安保管理。體育班學生具備優先申請住宿權益，並享有專屬運動營養晚餐與夜間K書自習室。
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button class="accordion-btn w-full px-6 py-5 text-left font-bold text-slate-800 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+                        <span class="text-base sm:text-lg"><i class="fa-solid fa-circle-question text-brand-accent mr-3"></i>體育班畢業後的升學管道有哪些？</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content hidden px-6 py-5 bg-white text-slate-600 text-sm border-t border-slate-100 leading-relaxed">
+                        畢業生可透過「運動績優甄審甄試」、「大學繁星推薦」、「申請入學」及「獨立招生」等多元管道升學。除了體育相關學系（如體育系、運動保健系、休閒管理系）外，亦有許多學長姐考取警察大學、國防大學或一般大學之商管、新聞等學系。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 頁尾 Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+                <!-- School Info -->
+                <div>
+                    <div class="flex items-center space-x-3 text-white mb-4">
+                        <div class="w-8 h-8 rounded bg-brand-accent flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-trophy text-sm"></i>
+                        </div>
+                        <span class="font-bold text-lg">OO高級中學 體育班</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        培養具備國際視野、堅毅品格與優秀競技實力的運動人才。歡迎充滿熱情與夢想的青年加入我們的行列！
+                    </p>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">聯絡我們 Contact</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-accent mt-0.5"></i>
+                            <span>100 臺北市OO區OO路123號 (體育組)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-accent"></i>
+                            <span>(02) 2345-6789 分機 301-305</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-accent"></i>
+                            <span>sports@mail.school.edu.tw</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social & External Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">社群與相關連結</h4>
+                    <div class="flex gap-3 mb-6">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-white flex items-center justify-center transition-colors" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-white flex items-center justify-center transition-colors" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-white flex items-center justify-center transition-colors" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                    <a href="https://example.com" target="_blank" rel="noopener" class="text-xs text-slate-400 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-house"></i>
+                        <span>返回 OO高級中學 學校首頁</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright Line -->
+            <div class="pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
+                <p>&copy; 2026 OO高級中學 體育班 版權所有. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Interactive Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when link clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Accordion Interactive Functionality
+        const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+        accordionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.fa-chevron-down');
+
+                // Toggle visibility
+                content.classList.toggle('hidden');
+                
+                // Rotate Icon
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
