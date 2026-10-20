@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1A2B - 電腦猜你的數字</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            color: #2d3436;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            color: #0984e3;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #636e72;
+            margin-bottom: 20px;
+        }
+        .guess-box {
+            font-size: 38px;
+            font-weight: bold;
+            color: #e17055;
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .select-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select {
+            padding: 8px 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid #dfe6e9;
+            outline: none;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #74b9ff;
+        }
+        .message {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            min-height: 24px;
+        }
+        .restart-btn {
+            display: none;
+            background-color: #00b894;
+            margin-top: 15px;
+        }
+        .restart-btn:hover {
+            background-color: #55efc4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>🤖 電腦猜你的 1A2B</h1>
+    <div class="subtitle">請在心中想好一個 4 位不重複數字（可包含 0）</div>
+
+    <div class="guess-box" id="guessDisplay">----</div>
+
+    <div id="gameArea">
+        <div class="control-group">
+            <div class="select-box">
+                <label for="aCount">幾 A：</label>
+                <select id="aCount">
+                    <option value="0">0 A</option>
+                    <option value="1">1 A</option>
+                    <option value="2">2 A</option>
+                    <option value="3">3 A</option>
+                    <option value="4">4 A</option>
+                </select>
+            </div>
+            <div class="select-box">
+                <label for="bCount">幾 B：</label>
+                <select id="bCount">
+                    <option value="0">0 B</option>
+                    <option value="1">1 B</option>
+                    <option value="2">2 B</option>
+                    <option value="3">3 B</option>
+                    <option value="4">4 B</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="submitFeedback()">回覆結果並讓電腦繼續猜</button>
+    </div>
+
+    <div class="message" id="message">請根據上方數字回覆幾 A 幾 B</div>
+
+    <button class="restart-btn" id="restartBtn" onclick="initGame()">再玩一次</button>
+</div>
+
+<script>
+    let possibleList = [];
+    let currentGuess = "";
+    let round = 0;
+
+    // 計算兩個 4 位數字之間的 A 和 B
+    function getAB(secret, guess) {
+        let A = 0, B = 0;
+        for (let i = 0; i < 4; i++) {
+            if (guess[i] === secret[i]) {
+                A++;
+            } else if (secret.includes(guess[i])) {
+                B++;
+            }
+        }
+        return { A, B };
+    }
+
+    function initGame() {
+        // 產生所有 4 位不重複數字的組合 (0000 ~ 9876)
+        possibleList = [];
+        for (let i = 0; i < 10000; i++) {
+            let s = i.toString().padStart(4, '0');
+            if (new Set(s).size === 4) {
+                possibleList.push(s);
+            }
+        }
+
+        round = 0;
+        document.getElementById('gameArea').style.display = "block";
+        document.getElementById('restartBtn').style.display = "none";
+        
+        // 立即讓電腦進行第一步猜測
+        nextGuess();
+    }
+
+    function nextGuess() {
+        if (possibleList.length === 0) {
+            document.getElementById('message').textContent = "⚠️ 候選清單空了！是不是剛才的回覆有矛盾呢？";
+            document.getElementById('message').style.color = "#d63031";
+            return;
+        }
+
+        round++;
+        // 隨機從目前的候選清單中挑一個來猜
+        const randomIndex = Math.floor(Math.random() * possibleList.length);
+        currentGuess = possibleList[randomIndex];
+
+        document.getElementById('guessDisplay').textContent = currentGuess;
+        document.getElementById('message').textContent = `這是電腦的第 ${round} 次猜測`;
+        document.getElementById('message').style.color = "#2d3436";
+        
+        // 重置下拉選單
+        document.getElementById('aCount').value = "0";
+        document.getElementById('bCount').value = "0";
+    }
+
+    function submitFeedback() {
+        const A = parseInt(document.getElementById('aCount').value);
+        const B = parseInt(document.getElementById('bCount').value);
+
+        if (A + B > 4) {
+            document.getElementById('message').textContent = "⚠️ A 和 B 的總和不能大於 4 喔！";
+            document.getElementById('message').style.color = "#d63031";
+            return;
+        }
+
+        if (A === 4) {
+            document.getElementById('guessDisplay').textContent = currentGuess;
+            document.getElementById('message').innerHTML = `🎉 電腦猜對了！答案就是 <strong>${currentGuess}</strong>，總共花了 ${round} 次！`;
+            document.getElementById('message').style.color = "#00b894";
+            document.getElementById('gameArea').style.display = "none";
+            document.getElementById('restartBtn').style.display = "block";
+            return;
+        }
+
+        // 篩選候選清單
+        possibleList = possibleList.filter(candidate => {
+            let res = getAB(candidate, currentGuess);
+            return res.A === A && res.B === B;
+        });
+
+        if (possibleList.length === 0) {
+            document.getElementById('message').textContent = "⚠️ 找不到符合條件的數字了，可能剛才的回覆有誤喔！";
+            document.getElementById('message').style.color = "#d63031";
+            return;
+        }
+
+        nextGuess();
+    }
+
+    // 網頁一載入就直接自動初始化並讓電腦猜第一個數字
+    window.onload = function() {
+        initGame();
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>終極密碼遊戲 (1-100)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: #2d3436;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #0984e3;
+            margin-bottom: 10px;
+        }
+        .range-display {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d63031;
+            margin: 20px 0;
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 60%;
+            border: 2px solid #dfe6e9;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #0984e3;
+        }
+        button {
+            padding: 11px 20px;
+            font-size: 18px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #74b9ff;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            min-height: 30px;
+            font-weight: 500;
+        }
+        .restart-btn {
+            display: none;
+            margin-top: 20px;
+            background-color: #00b894;
+            width: 100%;
+        }
+        .restart-btn:hover {
+            background-color: #55efc4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>🔥 終極密碼 🔥</h1>
+    <p>請猜一個介於下限與上限之間的數字</p>
+    
+    <div class="range-display" id="rangeDisplay">
+        1 ~ 100
+    </div>
+
+    <div id="inputArea">
+        <input type="number" id="guessInput" placeholder="輸入數字" min="1" max="100">
+        <button onclick="checkGuess()">猜!</button>
+    </div>
+
+    <div class="message" id="message">遊戲開始，祝你好運！</div>
+
+    <button class="restart-btn" id="restartBtn" onclick="initGame()">再玩一次</button>
+</div>
+
+<script>
+    let secretNumber;
+    let minRange;
+    let maxRange;
+
+    const rangeDisplay = document.getElementById('rangeDisplay');
+    const guessInput = document.getElementById('guessInput');
+    const message = document.getElementById('message');
+    const inputArea = document.getElementById('inputArea');
+    const restartBtn = document.getElementById('restartBtn');
+
+    function initGame() {
+        // 1. 預想 1-100 之間的答案
+        secretNumber = Math.floor(Math.random() * 100) + 1;
+        minRange = 1;
+        maxRange = 100;
+
+        // 重置介面
+        updateDisplay();
+        message.textContent = "遊戲開始，請輸入數字！";
+        message.style.color = "#2d3436";
+        guessInput.value = "";
+        inputArea.style.display = "block";
+        restartBtn.style.display = "none";
+        
+        // 為了方便測試，你可以在主控台看到答案
+        console.log("提示：本局答案是", secretNumber);
+    }
+
+    function updateDisplay() {
+        rangeDisplay.textContent = `${minRange} ~ ${maxRange}`;
+        guessInput.min = minRange;
+        guessInput.max = maxRange;
+    }
+
+    function checkGuess() {
+        const guess = parseInt(guessInput.value);
+
+        // 3. 檢查是否符合範圍
+        if (isNaN(guess) || guess <= minRange || guess >= maxRange) {
+            message.textContent = `⚠️ 請輸入大於 ${minRange} 且小於 ${maxRange} 的有效數字！`;
+            message.style.color = "#d63031";
+            return;
+        }
+
+        // 4. 判斷大小並更新範圍
+        if (guess === secretNumber) {
+            message.innerHTML = `🎉 恭喜你猜中了！答案就是 <strong>${secretNumber}</strong>！`;
+            message.style.color = "#00b894";
+            inputArea.style.display = "none";
+            restartBtn.style.display = "block";
+        } else if (guess < secretNumber) {
+            minRange = guess;
+            message.textContent = `太小囉！範圍縮小為 ${minRange} ~ ${maxRange}`;
+            message.style.color = "#0984e3";
+            updateDisplay();
+        } else {
+            maxRange = guess;
+            message.textContent = `太大囉！範圍縮小為 ${minRange} ~ ${maxRange}`;
+            message.style.color = "#e17055";
+            updateDisplay();
+        }
+
+        guessInput.value = "";
+        guessInput.focus();
+    }
+
+    // 支援按下 Enter 鍵直接猜
+    guessInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            checkGuess();
+        }
+    });
+
+    // 初始化遊戲
+    initGame();
+</script>
+
+</body>
+</html>
